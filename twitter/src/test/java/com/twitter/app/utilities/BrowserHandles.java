@@ -1,10 +1,8 @@
 package com.twitter.app.utilities;
 
-import com.sun.deploy.security.SelectableSecurityManager;
-import io.cucumber.java.en_old.Ac;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 

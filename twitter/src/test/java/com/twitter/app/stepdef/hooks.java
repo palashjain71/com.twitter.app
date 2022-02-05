@@ -4,6 +4,7 @@ import com.twitter.app.utilities.DriverUtils;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+
 import java.io.IOException;
 
 
@@ -11,10 +12,14 @@ public class hooks {
 
     @Before()
     public static void setupBrowser() throws Exception {
-       // System.setProperty("url", "https://twitter.com/");
-       // System.setProperty("browserName", "chrome");
+        // System.setProperty("url", "twitter_prod");
+        // System.setProperty("browserName", "chrome");
+        String url = "https://twitter.com/";
+        if (System.getProperty("url").contains("twitter_prod")) {
+            url = "https://twitter.com/";
+        }
         DriverUtils.setDriver(System.getProperty("browserName"));
-        DriverUtils.navigateToURL(System.getProperty("url"));
+        DriverUtils.navigateToURL(url);
     }
 
     @After()
