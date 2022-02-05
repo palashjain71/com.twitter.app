@@ -1,12 +1,16 @@
 package com.twitter.app.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
+import org.apache.commons.io.FileUtils;
+import org.mockito.exceptions.Reporter;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.net.URL;
+import java.io.File;
+import java.io.IOException;
+
 
 public class DriverUtils {
 
@@ -26,12 +30,19 @@ public class DriverUtils {
         return driver;
     }
 
-    public static void navigateToURL(String url)  {
+    public static void navigateToURL(String url) {
         driver.get(url);
     }
 
+    public static void takeScreenShot(String screenshotName) throws IOException {
+        File sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File destinationPath = new File(System.getProperty("user.dir") + "/target/cucumber-reports/screenshots/"
+                + screenshotName + ".png");
+        FileUtils.copyFile(sourcePath, destinationPath);
+    }
 
-    public static void tearDown()  {
+
+    public static void tearDown() {
         driver.quit();
         driver = null;
     }
